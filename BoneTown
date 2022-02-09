@@ -1,0 +1,204 @@
+#File for "BoneTown" Terminal Game
+
+#time delay imports
+from pydoc import importfile
+import sys
+from textwrap import wrap
+
+import time
+
+import utils
+        
+# a = 2
+# b = 0.5
+# c = 0.08
+# d = 0.09
+
+def game_over():
+    print("GAME OVER!")
+    utils.dprint_del()
+    print("Returning to where it all began...")
+    question_hub_intro()
+
+#def/branching path
+def farm_questcomplete():
+    utils.three_lines("I'll be honest...I've learned everything I'll learn from this type of program, a lot of my code is modulized, and at this point I'm doing less coding it's more dialogue, which is not very fun anymore!", "so thanks for playing!", "when prompted, type escape to leave the program")
+    path_hub()
+#farm quest
+def farm_quest():
+    utils.twolines("(You take a closer look at the farm, you noticed an worn looking window you may be able to open…A backdoor you may be able to lock pick, and an open skylight on the roof)","(You sit there contemplating your options…)")   
+    farm_ipath = input("([1] Enter through the worn window [2] lockpick the backdoor [3] climb the roof and sneak in through the open skylight)")
+    if farm_ipath == "1":
+        utils.three_lines("(You approach the window…)", "(after a bit of pressure the window props open…allowing you to sneak into the house where you find yourself in a cozy living room)", "(From your position you can see a staircase leading upstairs, a ladder leading to the attic, and stairs leading to the basement…)")
+        windowP1 = input("(where would you like to go? ([1]upstairs, [2] attic, [3] basement)") 
+        if windowP1 == "1":
+            utils.threelines__desdiades("(You begin making your way upstairs…only to find farmer Johnson snoring in bed!)", "“zzz…zzzz…zzzz…(snore)....zzz..zzz-Huh, who the hell is that at this hour? I see you! What are you doing in my home!", "(Farmer Johnson saw you! He quickly reaches behind his bed, pulling out a shotgun, and fills your gut with buckshot…you die on the spot…)")
+            utils.game_over()
+        elif windowP1 == "2":
+            utils.three_lines("(You climb up into the attic…)", "(In there you see another man)", "(He looks shocked to see you, then a little relieved…)")
+            utils.four_lines_1des3dia("(The man sneaks over to you and begins to speak, making sure to talk in hushed tones)", "Hey…did the guy in the saloon send you?", "No need to answer…I know he did", "They sent me one week ago…I’ve been stuck here ever since, I swear this is the first time this insomniac farmer has slept in a week!")
+            utils.fourlines_2des2dia("I know where the secret is….follow me","(He begins to climb down into the living room, and sneaks down into the basement story)", "(In the basement you see a large impenetrable looking safe…to your surprise it was not fully closed, allowing you and your new compatriot to take the document, seeds, and any other valuables you find…)", "I’ll let you return the document, I want nothing else to do with those people…")
+            farm_questcomplete()
+        elif windowP1 == "3":
+            utils.three_lines("(You slowly creep down into the basement)", "(The stairs squeak under the pressure of your weight)", "(you enter into a pitch black room)")
+            utils.three_lines("(In the dark you find a fluorescent light hanging from the ceiling… you pull the string and revealed before you is a massive safe…)", "(You investigate the safe to find it left ajar, you empty it of its valuables including Brock Johnson’s farming secrets…)", "(You sneak back upstairs and exit through the same window you entered…)")
+            farm_questcomplete()
+        else:
+            print("Not a valid option...returning to quest start")
+            farm_quest()
+    elif farm_ipath == "2":
+        utils.three_lines("(You approach the backdoor)", "(as you go to pick it you notice that it was left ajar…you wonder; does anyone use locks around here?)", "(You find yourself in an inviting country kitchen)")
+        utils.twolines("before you, you see an open pantry, countless cupboards, and a door connecting to the living room", "(Options: [1] search the pantry: [2] Search the cupboards [3] Enter the living room)")
+        kitchen_choice = input("[1], [2], [3]")
+        if kitchen_choice == "1":
+            utils.three_lines("(In the pantry you find countless stores of food)", "(you grab a couple jars but nothing of true value)", "(when leaving the pantry, you slip over spoiled pudding that had spilled to the ground, causing you to break your neck and suffocate...)")
+            game_over()
+        elif kitchen_choice == "2":
+            utils.threelines_2des1dia("(You start ransacking through the cupboards…)", "(Finding nothing, your frustration builds until you’re practically tearing down the house…)", "What is that noise! Who the hell is that!?!")
+            utils.twolines("(Farmer Johsnon comes downstairs brandishing a rife)", "(he puts two shots in your chest before you can muster out a poor excuse…)")
+            game_over()
+        elif kitchen_choice == "3":
+            utils.twolines("(you find yourself in a cozy living room)", "(From your position you can see a staircase leading upstairs, a ladder leading to the attic, and stairs leading to the basement…)")
+            k_choice = input("(where would you like to go? ([1]upstairs, [2] attic, [3] basement)") 
+            if k_choice == "1":
+                utils.threelines__desdiades("(You begin making your way upstairs…only to find farmer Johnson snoring in bed!)", "“zzz…zzzz…zzzz…(snore)....zzz..zzz-Huh, who the hell is that at this hour? I see you! What are you doing in my home!", "(Farmer Johnson saw you! He quickly reaches behind his bed, pulling out a shotgun, and fills your gut with buckshot…you die on the spot…)")
+                game_over()
+            elif k_choice == "2":
+                utils.three_lines("(You climb up into the attic…)", "(In there you see another man)", "(He looks shocked to see you, then a little relieved…)")
+                utils.four_lines_1des3dia("(The man sneaks over to you and begins to speak, making sure to talk in hushed tones)", "Hey…did the guy in the saloon send you?", "No need to answer…I know he did", "They sent me one week ago…I’ve been stuck here ever since, I swear this is the first time this insomniac farmer has slept in a week!")
+                utils.fourlines_2des2dia("I know where the secret is….follow me","(He begins to climb down into the living room, and sneaks down into the basement story)", "(In the basement you see a large impenetrable looking safe…to your surprise it was not fully closed, allowing you and your new compatriot to take the document, seeds, and any other valuables you find…)", "I’ll let you return the document, I want nothing else to do with those people…")
+                farm_questcomplete()
+            elif k_choice == "3":
+                utils.three_lines("(You slowly creep down into the basement)", "(The stairs squeak under the pressure of your weight)", "(you enter into a pitch black room)")
+                utils.three_lines("(In the dark you find a fluorescent light hanging from the ceiling… you pull the string and revealed before you is a massive safe…)", "(You investigate the safe to find it left ajar, you empty it of its valuables including Brock Johnson’s farming secrets…)", "(You sneak back upstairs and exit through the same window you entered…)")
+                farm_questcomplete()
+            else:
+                print("Not a valid option...returning to quest start")
+                farm_quest()
+    elif farm_ipath == "3":
+        utils.twolines("I'll be honest...I've learned everything I'll learn from this type of program, a lot of my code is modulized, and at this point I'm doing less coding it's more dialogue, which is not very fun anymore!", "so thanks for playing!")
+        path_hub()
+    elif farm_ipath == "escape":
+        print("leaving function...")
+    else:
+        print("Why would you think that? That wasn't even an option...")
+        farm_quest()
+
+
+
+#saloon path
+def saloon_path():
+    utils.dprint_del()
+    saloon_hubr1 = input("[1]Ask the Bartender if he needs help, [2] Talk to the drunk, [3] speak to the man in the back corner")
+    if saloon_hubr1 == "1":
+        utils.threelines__desdiades("(The Bartender stares at you, visible upon his face is a lifetime of pain, frustration, and hunger)", "Do I look like I need any damn help? Last think we need in town is another moron… go play with the other dipshits…", "(you sulk away from the rude bartender's presense)")
+        saloon_path()
+    elif saloon_hubr1 == "2":
+        utils.threelines__desdiades("(you walk over to speak to the drunk...You catch him mid rant)", "(hiccup) Beer cheaper than water! What a backwards world! If that's how they want it to be then I won't buy water! I'll drink beer all day long…", "(you decide to let the man be)")
+        saloon_path()
+    elif saloon_hubr1 == "3":
+        utils.four_lines_1des3dia("(you lock eyes with the man in the corner booth, he beckons you over)","You're a newcomer here aren't you?","No need to answer...I had you pegged the minute you walked in here...", "Look, I got a job you may be interested in, something top secret, none of the local guys are equipped because they'd get recognized on the spot…")
+        saloon_response = input("([1] I'm listening, [2] sounds to risky for me)")
+        if saloon_response == "1":
+            utils.four_lines_1des3dia("(The man smiles)", "I'm sure you've heard of the farm here…There's a reason Brock Johnson is the only farmer, and that's because he's the only one who's figured out how to grow crops in this god forsaken soil…", "Legend has it he keeps his secret in a safe...I want you to go in, find it, and return it to me", "The pay will be generous...")
+            shady_choice = input("[1] I'm in, [2] Sounds a bit beyond me")
+            if shady_choice == "1":
+                utils.actiondump_6des2dia("Good to hear...I'll walk you to the farm, I recommend you break in at night...", "(As you leave the saloon you get your first real look at the farm, it’s a classic barn constructed with rusty repurposed metal, fenced in are cows, pigs, and the occasional sheep…)", "(What shocks you is the greenness of the crops, you thought foliage of that kind was extinct…)", "(The shady man turns to you)", "All right, I'll leave this to your discretion", "(with that the shady man makes his leave...you realize you never got his name...)", "(you rest against a nearby shack, tip your hat over your eyes, doze off, and wake to a moonlit night sky)", "(the right time to begin the heist is NOW...")
+                farm_quest()
+            elif shady_choice == "2": 
+                utils.three_lines("(As you get up to leave, he lunges across the table and visciously stabs you to death)", "(looks like this was not a yes or no prospect...)", "GAME OVER! Return to a previous location...")
+                path_hub()
+            else:
+                print("The man doesn't seem to understand you're question, return again")
+                saloon_path()
+        elif saloon_response == "2":
+           utils.three_lines("(As you get up to leave, he lunges across the table and visciously stabs you to death)", "(looks like this was not a yes or no prospect...)", "GAME OVER! Return to a previous location...")
+           path_hub()
+        elif saloon_response == "escape":
+            print("leaving the program")
+        else:
+            utils.non_response()
+            saloon_path()
+    elif saloon_hubr1 == "escape":
+        print("leaving the program")
+    else:
+        print("Why would I do that?..You lose your train of that and continue to stand there")
+        saloon_path()
+
+#Path Hub - Saloon or Gunstore
+def path_hub():
+    utils.dprint_del()
+    pathhub_r1 = "If you're ready to move on I recommend checking out the saloon or the gun store, both parties there could use a newcomer's help..."
+    utils.sprawl_txt(pathhub_r1)
+    utils.dprint_del()
+    pathhub_res = input("[1]Visit the saloon, [2]Visit the gun store, [3]ignore the sheriff's advice and keep walking...")
+    if pathhub_res == "1":
+        utils.fourlines_3des1dia("Good place to start...I'm sure you're thirsty from the long journey. I'll walk you over...", "(As you make your way to the saloon you notice how sparse \"BoneTown\" is)", "(You pass a ramshackle hut, Bigsby points out as the “police station”, and are dazzled by the magnificence that is the Governor's mansion…You didn't realize such homes still existed!)" ,"(You enter the saloon, it's dark, dusty, and reeks of stale beer and sawdust…the bartender is standing behind the counter cleaning off mugs with a damp rag…Only two patrons seem to be visiting the bar, one, visibly drunk and slumped over the counter, and the other staring at you menacingly from a corner booth…)")
+        saloon_path()
+
+    elif pathhub_res == "2":
+        utils.three_lines("I'll be honest...I've learned everything I'll learn from this type of program, a lot of my code is modulized, and at this point I'm doing less coding it's more dialogue, which is not very fun anymore!", "so thanks for playing!", "when prompted, type escape to leave the program")
+        path_hub()
+    elif pathhub_res == "3":
+        utils.threelines_1des2dia("Boy...did I say you could simply walk away?", "Last thing we need in BoneTone is another crook...", "(As you walk away, the sheriff unholters his revolver, putting six shots in your back before you take another step...resulting in your untimely death)")
+        game_over()
+    elif pathhub_res == "escape":
+        print("leaving the program")
+    else:
+        utils.non_response()
+        path_hub()
+
+#Intro hub dialogue tree
+def question_hub_intro():
+    time.sleep(utils.a)
+    response = input("[1]\"How would one make money around here?\" , [2]\"where can I get a drink\", [3]\"No reason in particular\", [4]Move on").lower().strip()
+    if response == "1":
+        utils.twolines("Well, Dr. Predus owner at the gun store down yonder has been complaining about a missing rifle…", "He's offering a price reward for anyone who's able to return it to him.")
+        question_hub_intro()
+    elif response == "2":
+        utils.twolines("Best place to get a drink around here is Ol Smitty's saloon.", "I will warn you though some dicey people congregate there...")
+        question_hub_intro()
+    elif response == "3":
+        utils.infodump_dia8("We have a saloon around here...it's fairly decent for the price, given it's the last saloon and all...", "All the town's food is grown on Brock Johnson's farm...He's grown quite rich from being the sole producer, and he's made quite a few enemies from it...", "Dr. Predus runs the only sanctioned arms distributor in town, but that doesn't mean he's the only seller…", "We have a crime problem here in BoneTown...A lot of these undesirables hang around the seedy slums...", "The town's controlled by the Govenor, he lives in that sizeable mansion in the left corner of town...", "All the junk in town is piled in the Junkyard, a couple years a back a local went crazy and has been living there ever since...", "As you'll find out, all the water in town comes from the water pump...The Govenor's men dole it out for the right price...I'm starting to get a little unsatisfied with their techniques...", "I'm Sheriff Bigsby by the way...Explore the town a bit then come back and see me, you'll find me in the police department")
+        utils.dprint_del()
+        question_hub_intro()
+    elif response == "4":
+        path_hub()
+    elif response == "escape":
+        print("leaving the program...")
+    else:
+        print("The man seems not to understand your question...")
+        question_hub_intro()
+
+
+def intro():
+    utils.threelines_2des1dia("(A man brandishing a rifle and wearing wide brim hat appears)", "(on his chest is a golden star, his skin has been stained red by the scorching desert sun)", "Welcome traveler, what brings you to these parts?")
+    utils.dprint_del()
+    question_hub_intro()
+
+
+
+#startup sequence
+intro_screen = """ 
+##########################################################################################
+#     # ##   #### #      #   #####    #########    ####    #           #    #      #     #                                                                           
+#     #   #  #  # #      #   #            #        #  #    #           #    #      #     #                                                      
+#     #   #  #  # # #    #   #            #        #  #    #           #    # #    #     #
+#     ###    #  # #  #   #   #####        #        #  #    #     #     #    #  #   #     #
+#     #   #  #  # #   #  #   #            #        #  #     #    #    #     #   #  #     #
+#     #   #  #  # #    # #   #            #        #  #      #  # #  #      #    # #     # 
+#     ####   #### #      #   #####        #        ####       ##   ##       #      #     #     
+##########################################################################################
+"""
+for charecters in intro_screen:
+        sys.stdout.write(charecters)
+        sys.stdout.flush()
+        time.sleep(utils.e)
+
+utils.fourlines_4dia("The year is 20XX, and after a year of traversing the withered wasteland, you finally arrive to humanity's last outpost...", "The fabled \"BONETOWN\",", "Finally surrounded by others, you think you're worries are behind you...", "But little do you know they are only beginning...")
+
+start_game = input("Are you ready to play? (yes/no)").strip().lower()
+if start_game == "yes":
+    intro()
+else:
+    print("Fortune favors the brave...")
